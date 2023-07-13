@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //endpoints
 Route::get('tasks', [TodoController::class, 'index']);
 Route::post('tasks', [TodoController::class, 'store']);
+Route::get('/tasks/{task}', [TodoController::class, 'getTaskById']);
 Route::put('/tasks/{task}', [TodoController::class, 'update']);
 Route::delete('/tasks/{task}', [TodoController::class, 'destroy']);
 Route::get('tasks/restore/{task}', [TodoController::class, 'restore']);

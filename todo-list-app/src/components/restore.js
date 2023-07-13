@@ -10,7 +10,7 @@ const TodoList = () => {
     fetch('http://localhost:8000/api/tasks')
       .then((response) => response.json())
       .then((data) => {
-        //convert retreived data as object to arra with the same elements
+        
         const dataArray = Array.isArray(data.data) ? data.data : Array.from(data.data);
         setTodos(dataArray);
       })
