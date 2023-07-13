@@ -49,12 +49,22 @@ class TodoController extends Controller
     }
 
     public function destroy(Todo $task)
-{
-    $task->delete();
+        {
+            $task->delete();
 
-    return response()->json([
-        'message' => 'Soft delete successful'
-    ], 200);
-}
+            return response()->json([
+                'message' => 'Soft delete successful'
+            ], 200);
+        }
+        
+    public function restore($id)
+        {
+            $task = Todo::withTrashed()->findOrFail($id);
+            $task->restore();
+
+            return response()->json([
+                'message' => 'Restored successfully'
+            ], 200);
+        }
 
 }
