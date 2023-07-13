@@ -17,7 +17,8 @@ class TodoController extends Controller
         return TaskResource::collection($todoTasks);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         // Validate the request data
         $validatedTaskData = $request->validate([
@@ -48,11 +49,12 @@ class TodoController extends Controller
     }
 
     public function destroy(Todo $task)
-    {
-        $task->delete();
+{
+    $task->delete();
 
-        return response()->json([
-            'message' => 'Delete successful'
-        ], 200);
-    }
+    return response()->json([
+        'message' => 'Soft delete successful'
+    ], 200);
+}
+
 }
