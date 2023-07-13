@@ -16,7 +16,16 @@ class TodoController extends Controller
         return TaskResource::collection($todoTasks);
     }
 
+    public function getTaskById($id)
+    {
+        $task = Todo::find($id);
 
+        if (!$task) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
+
+        return new TaskResource($task);
+    }
     public function store(Request $request)
     {
 
