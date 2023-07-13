@@ -1,12 +1,12 @@
 import React from 'react';
 import TodoList from './components/TodoList';
-// import TodoForm from './TodoForm';
+import Restore from './components/restore';
 
 const App = () => {
   return (
     <div>
       <TodoList />
-      {/* <TodoForm /> */}
+      <Restore />
     </div>
   );
 };

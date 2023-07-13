@@ -11,11 +11,11 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todoTasks = Todo::all(); //select * from todos
+        $todoTasks = Todo::withTrashed()->get();
 
-        //to determin the specified columns of each task
         return TaskResource::collection($todoTasks);
     }
+
 
     public function store(Request $request)
     {
@@ -56,7 +56,7 @@ class TodoController extends Controller
                 'message' => 'Soft delete successful'
             ], 200);
         }
-        
+
     public function restore($id)
         {
             $task = Todo::withTrashed()->findOrFail($id);
