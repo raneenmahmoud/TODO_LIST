@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Http\Resources\TaskResource;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
     public function index()
     {
+
         $todoTasks = Todo::withTrashed()->get();
 
         return TaskResource::collection($todoTasks);
@@ -18,6 +20,7 @@ class TodoController extends Controller
 
     public function getTaskById($id)
     {
+
         $task = Todo::find($id);
 
         if (!$task) {
@@ -33,6 +36,7 @@ class TodoController extends Controller
         $validatedTaskData = $request->validate([
             'title' => 'required|string',
             'description' => 'nullable|string',
+            'userid' =>'required'
         ]);
 
         //store new data in database
