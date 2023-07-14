@@ -1,7 +1,7 @@
 # TODO_LIST(API)
 
-## with Backend: (Laravel & MySQL)
-## with Frontend: (React)
+## Backend: (Laravel & MySQL)
+## Frontend: (React)
 ### For Install and run Project:
 #### - git clone https://github.com/raneenmahmoud/TODO_LIST.git
 
