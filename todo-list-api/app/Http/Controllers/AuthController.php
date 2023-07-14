@@ -46,6 +46,8 @@ class AuthController extends Controller
                 'user' => $user,
                 'access_token' => $token->plainTextToken,
             ]);
+            $data = $response->getData();
+
         }
 
         return response()->json(['error' => 'Unauthenticated'], 401);
