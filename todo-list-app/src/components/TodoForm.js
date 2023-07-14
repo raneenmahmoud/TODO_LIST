@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+const token = localStorage.getItem('token');
 const TodoForm = () => {
   const { id } = useParams();
   const [title, setTitle] = useState('');
@@ -9,7 +11,12 @@ const TodoForm = () => {
   useEffect(() => {
     if (id) {
       // Fetch task data for editing
-      fetch(`http://localhost:8000/api/tasks/${id}`)
+      fetch(`http://localhost:8000/api/tasks/${id}`,{
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
           setTitle(data.data.title);
@@ -34,10 +41,12 @@ const TodoForm = () => {
 
     if (id) {
       // Update existing task
+      
       fetch(`http://localhost:8000/api/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(todoData),
       })
@@ -54,6 +63,7 @@ const TodoForm = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(todoData),
       })
@@ -89,8 +99,15 @@ const TodoForm = () => {
             rows="3"
           />
         </div>
+        <div className='d-flex justify-content-between'>
         <button type="submit">{id ? 'Update' : 'Save'}</button>
+        <Link to="/back" className="btn btn-info mx-2">
+            Back
+        </Link>
+        </div>
+        
       </form>
+      
     </div>
   );
 };

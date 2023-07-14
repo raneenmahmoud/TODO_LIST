@@ -10,9 +10,10 @@ const App = () => {
  
     <BrowserRouter>
     <Routes>
-    <Route path='/' element={<AuthComponent/>}/>
+      <Route path='/' element={<AuthComponent/>}/>
       <Route path='/tasks' element={<TodoList/>}/>
       <Route path='/restore' element={<Restore/>}/>
+      <Route path='/back' element={<TodoList/>}/>
       <Route path="/create" element={<TodoForm />} />
       <Route path="/edit/:id" element={<TodoForm />} />
     </Routes>

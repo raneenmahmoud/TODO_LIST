@@ -45,17 +45,33 @@ const AuthComponent = () => {
   };
 
   return (
-    <div>
+    <div className='container mt-5 p-3 border'>
+      <h1 className='mb-5'>Click Register First then click Login</h1>
       <h2>Register</h2>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button onClick={handleRegister}>Register</button>
+      <input type="text" value={name} 
+      onChange={(e) => setName(e.target.value)} 
+      placeholder="Name" className='m-4'/>
+
+      <input type="email" value={email} 
+      onChange={(e) => setEmail(e.target.value)} 
+      placeholder="Email" className='m-4'/>
+
+      <input type="password" value={password} 
+      onChange={(e) => setPassword(e.target.value)} 
+      placeholder="Password" className='m-4'/>
+
+      <button onClick={handleRegister} className='m-5'>Register</button>
 
       <h2>Login</h2>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-      <button onClick={handleLogin}>Login</button>
+      <input type="email" value={email} 
+      onChange={(e) => setEmail(e.target.value)} 
+      placeholder="Email" className='m-4'/>
+
+      <input type="password" value={password} 
+      onChange={(e) => setPassword(e.target.value)} 
+      placeholder="Password" className='m-4'/>
+
+      <button onClick={handleLogin} className='m-5'>Login</button>
     </div>
   );
 };
