@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 const token = localStorage.getItem('token');
 const TodoForm = () => {
   const { id } = useParams();
+  const ID = localStorage.getItem('ID');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [userid, setUserID] = useState(ID);
 
   useEffect(() => {
     if (id) {
@@ -20,25 +22,19 @@ const TodoForm = () => {
         .then((response) => response.json())
         .then((data) => {
           setTitle(data.data.title);
-          setDescription(data.data.decsription);
+          setDescription(data.data.description);
+          setUserID(data.data.userid);
         })
         .catch((error) => console.log(error));
     }
   }, [id]);
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const todoData = { title, description };
-
+    const todoData = { title, description, userid: ID };
+      console.log(todoData)
     if (id) {
       // Update existing task
       
@@ -55,6 +51,7 @@ const TodoForm = () => {
           console.log(data);
           setTitle('');
           setDescription('');
+          setUserID('');
         })
         .catch((error) => console.log(error));
     } else {
@@ -72,14 +69,29 @@ const TodoForm = () => {
           console.log(data);
           setTitle('');
           setDescription('');
+          setUserID('');
         })
         .catch((error) => console.log(error));
+    }
+    if (!ID) {
+      showAlert();
+    }
+  };
+
+  const showAlert = () => {
+    const alertElement = document.getElementById('alert');
+
+    if (alertElement) {
+      alertElement.classList.remove('d-none');
     }
   };
 
   return (
     <div className="container mt-5 p-3 border">
       <h2>{id ? 'Edit' : 'Add'} To-Do Task</h2>
+      <div id="alert" className="alert alert-danger d-none" role="alert">
+        Please log in first
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label>Title:</label>
@@ -87,7 +99,7 @@ const TodoForm = () => {
             type="text"
             className="form-control"
             value={title}
-            onChange={handleTitleChange}
+            onChange={(event) => setTitle(event.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -95,19 +107,28 @@ const TodoForm = () => {
           <textarea
             className="form-control"
             value={description}
-            onChange={handleDescriptionChange}
+            onChange={(event) => setDescription(event.target.value)}
             rows="3"
           />
         </div>
-        <div className='d-flex justify-content-between'>
-        <button type="submit">{id ? 'Update' : 'Save'}</button>
-        <Link to="/back" className="btn btn-info mx-2">
-            Back
-        </Link>
+        <div className="mb-3">
+          <label>UserID:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={userid}
+            readOnly
+          />
         </div>
-        
+        <div className='d-flex justify-content-between'>
+        <button type="submit" className="btn btn-primary">
+          {id ? 'Update' : 'Save'}
+        </button>
+          <Link to="/back" className="btn btn-secondary mx-2">
+            Back
+          </Link>
+        </div>
       </form>
-      
     </div>
   );
 };
