@@ -2,7 +2,14 @@
 
 ## Backend: (Laravel & MySQL)
 ## Frontend: (React)
+
+### It supports:
+#### - Cruds (View, Create, Edit, Delete(Softdelete))
+#### - authentication
+#### - authorization acording owner
+
 ### For Install and run Project:
+
 #### - git clone https://github.com/raneenmahmoud/TODO_LIST.git
 
 ### For Front-React:
