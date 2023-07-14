@@ -69,10 +69,12 @@ const TodoList = () => {
                     <td>{todo.title}</td>
                     <td>{todo.decsription}</td>
                     <td>
-                    <a className="btn btn-info mx-3" 
-                    onClick={() => handleRestore(todo.id)}>
+                    <Link to="/tasks">
+                      <button className="btn btn-info mx-3" 
+                        onClick={() => handleRestore(todo.id)}>
                         <FontAwesomeIcon icon={faUndo} />
-                    </a>
+                    </button>
+                    </Link>
                     </td>
                 </tr>
                 );
@@ -83,11 +85,11 @@ const TodoList = () => {
 
         </tbody>
       </table>
+      <Link to="/back" className="btn btn-info mx-2">
+            Back
+        </Link>
         </div>
       )}
-       <Link to="/back" className="btn btn-info mx-2">
-         Back
-      </Link>
     </div>
   );
 };

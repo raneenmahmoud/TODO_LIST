@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AuthComponent = () => {
   const [name, setName] = useState('');
@@ -71,7 +72,7 @@ const AuthComponent = () => {
       onChange={(e) => setPassword(e.target.value)} 
       placeholder="Password" className='m-4'/>
 
-      <button onClick={handleLogin} className='m-5'>Login</button>
+      <Link to="/tasks"><button onClick={handleLogin} className='m-5'>Login</button></Link>
     </div>
   );
 };

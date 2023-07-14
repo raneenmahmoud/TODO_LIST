@@ -87,9 +87,9 @@ const TodoList = () => {
                         <Link to={`/edit/${todo.id}`} className="btn btn-info mx-3">
                           <FontAwesomeIcon icon={faEdit} />
                         </Link>
-                        <a className="btn btn-danger" onClick={() => handleDelete(todo.id)}>
+                        <button className="btn btn-danger" onClick={() => handleDelete(todo.id)}>
                           <FontAwesomeIcon icon={faTrash} />
-                        </a>
+                        </button>
                       </td>
                     </tr>
                   );
@@ -101,9 +101,6 @@ const TodoList = () => {
           </table>
         </div>
       )}
-      <Link to="/back" className="btn btn-info mx-2">
-         Back
-      </Link>
     </div>
   );
 };
