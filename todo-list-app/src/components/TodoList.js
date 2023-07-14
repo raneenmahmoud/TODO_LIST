@@ -30,9 +30,6 @@ const TodoList = () => {
     }
   }, [token]);
   
-  
-  
-
   const handleDelete = (id) => {
 
     fetch(`http://localhost:8000/api/tasks/${id}`, {
