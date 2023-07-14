@@ -10,6 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Todo extends Model
 {
     use HasFactory;
-    use SoftDeletes; 
-    protected $fillable = ['title', 'description'];
+    use SoftDeletes;
+    protected $fillable = [
+        'title',
+        'description',
+        'userid'
+    ];
+    public function user(){
+        return $this->belongsTo(related:User::class);
+    }
 }
