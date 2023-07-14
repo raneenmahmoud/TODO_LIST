@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const token = localStorage.getItem('token');
+  const ID = localStorage.getItem('ID');
   const [showLoginMessage, setShowLoginMessage] = useState(false);
 
   useEffect(() => {
@@ -63,11 +64,11 @@ const TodoList = () => {
         <tbody>
         {todos.map((todo) => {
             
-            if (todo.deleted_at !== null) {
+            if (todo.deleted_at !== null && todo.userid == ID) {
                 return (
                 <tr key={todo.id}>
                     <td>{todo.title}</td>
-                    <td>{todo.decsription}</td>
+                    <td>{todo.description}</td>
                     <td>
                     <Link to="/tasks">
                       <button className="btn btn-info mx-3" 
@@ -85,9 +86,9 @@ const TodoList = () => {
 
         </tbody>
       </table>
-      <Link to="/back" className="btn btn-info mx-2">
-            Back
-        </Link>
+      <Link to="/back" className="btn btn-secondary mx-2">
+          Back
+      </Link>
         </div>
       )}
     </div>
