@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call(
-        //     class: PostSeeder:: class
-        // );
+        $this->call(
+            class: TodoSeeder:: class
+        );
     }
 }
