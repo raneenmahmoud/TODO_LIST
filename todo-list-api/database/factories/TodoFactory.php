@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Todo;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Todo>
@@ -19,7 +20,7 @@ class TodoFactory extends Factory
         return [
             'title' => fake()->title(),
             'description'=> fake()->paragraph(),
-            'user_id' =>fake()->numberbetween(1,4)
+            'userid' =>fake()->numberbetween(1,2)
         ];
     }
 }

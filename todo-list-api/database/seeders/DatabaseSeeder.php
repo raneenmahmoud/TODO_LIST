@@ -20,7 +20,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(
+            class: UserSeeder:: class
+        );
+
+        $this->call(
             class: TodoSeeder:: class
         );
+
     }
 }
