@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 
 
 const TodoList = () => {
+  //get items from local storage
   const [todos, setTodos] = useState([]);
   const token = localStorage.getItem('token');
   const ID = localStorage.getItem('ID');
   const [showLoginMessage, setShowLoginMessage] = useState(false);
   
+  // useEffect hook to handle login message and fetch tasks based on the 'token' dependency
   useEffect(() => {
     if (!token) {
       setShowLoginMessage(true); // Display the login message
@@ -30,6 +32,7 @@ const TodoList = () => {
     }
   }, [token]);
   
+  //when delete task
   const handleDelete = (id) => {
 
     fetch(`http://localhost:8000/api/tasks/${id}`, {
@@ -50,8 +53,10 @@ const TodoList = () => {
   return (
     <div className="container mt-5 p-3 border">
       
+      {/* don't have token in local storage */}
       {showLoginMessage && <Link to="/"><h1>Please register first</h1></Link>}
 
+      {/* have token in local storage */}
       {!showLoginMessage && (
         <div>
           <div className='d-flex justify-content-between'>
@@ -75,6 +80,7 @@ const TodoList = () => {
               </tr>
             </thead>
             <tbody>
+              {/* loop todos array with map and filter it according deleting task*/}
               {todos.map((todo) => {
                 if (todo.deleted_at === null && todo.userid == ID) {
                   return (

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
+    //for get all tasks
     public function index()
     {
 
@@ -18,6 +19,7 @@ class TodoController extends Controller
         return TaskResource::collection($todoTasks);
     }
 
+    //for get task by id
     public function getTaskById($id)
     {
 
@@ -29,6 +31,8 @@ class TodoController extends Controller
 
         return new TaskResource($task);
     }
+
+    //for create new task
     public function store(Request $request)
     {
 
@@ -46,6 +50,7 @@ class TodoController extends Controller
         return new TaskResource($task);
     }
 
+    //for update exiting task
     public function update(Request $request, Todo $task)
     {
         // Validate the request data
@@ -61,6 +66,7 @@ class TodoController extends Controller
         return new TaskResource($task);
     }
 
+    //for softdelete task
     public function destroy(Todo $task)
         {
             $task->delete();
@@ -70,6 +76,7 @@ class TodoController extends Controller
             ], 200);
         }
 
+    //for restore deleted task
     public function restore($id)
         {
             $task = Todo::withTrashed()->findOrFail($id);

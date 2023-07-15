@@ -10,6 +10,7 @@ const TodoForm = () => {
   const [description, setDescription] = useState('');
   const [userid, setUserID] = useState(ID);
 
+  // useEffect hook to fetch task data for editing when the 'id' dependency changes
   useEffect(() => {
     if (id) {
       // Fetch task data for editing
@@ -29,7 +30,7 @@ const TodoForm = () => {
     }
   }, [id]);
 
-
+//when submit form
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -49,6 +50,7 @@ const TodoForm = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          //empty inputs after successful update
           setTitle('');
           setDescription('');
           setUserID('');
@@ -67,12 +69,14 @@ const TodoForm = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          //empty inputs after successful create
           setTitle('');
           setDescription('');
           setUserID('');
         })
         .catch((error) => console.log(error));
     }
+    //for authorization
     if (!ID) {
       showAlert();
     }
