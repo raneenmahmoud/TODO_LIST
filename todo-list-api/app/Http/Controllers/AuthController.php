@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'user' => $user,
                 'access_token' => $token->plainTextToken,
             ]);
-            $data = $response->getData();
+            //$data = $response->getData();
 
         }
 
